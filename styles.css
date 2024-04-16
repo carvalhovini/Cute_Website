@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.countdown, .sky-image, .photo-gallery {
+    margin-bottom: 30px;
+}
+
+.photo-gallery h2 {
+    margin-bottom: 10px;
+}
+
+#photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.photo {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+}
