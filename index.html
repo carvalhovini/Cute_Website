@@ -7,24 +7,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Álbum de Fotos Especial</h1>
-    </header>
+    <div class="background-image">
+        <!-- Aqui vamos colocar a imagem de fundo com o blur -->
+    </div>
     <main>
         <div class="countdown">
+            <header>
+                <h1>Álbum de Fotos Especial</h1>
+            </header>
             <h2>Tempo Juntos</h2>
             <p id="countdown"></p>
         </div>
-        <div class="sky-image">
-            <h2>Céu no Dia que Começamos a Namorar</h2>
-            <img id="apod-image" src="" alt="APOD Image">
-        </div>
-        <div class="photo-gallery">
-            <h2>50 Fotos e Motivos Pelos Quais Eu Te Amo</h2>
-            <div id="photo-grid">
-                <!-- As fotos e motivos serão adicionados aqui dinamicamente -->
+        <section id="memories">
+            <div class="photo-gallery">
+                <div id="photo-grid">
+                    <!-- As fotos e motivos serão adicionados aqui dinamicamente -->
+                </div>
             </div>
-        </div>
+        </section>
     </main>
     <audio id="background-music" autoplay loop>
         <source src="background-music.mp3" type="audio/mpeg">
@@ -33,4 +33,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

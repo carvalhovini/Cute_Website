@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Função para embaralhar um array
+    function shuffle(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+
     // Contagem regressiva do tempo juntos
     var startDate = new Date("2022-09-18"); // Coloque a data que começaram a namorar aqui
     var countdownElement = document.getElementById("countdown");
@@ -6,62 +17,63 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateCountdown() {
         var currentDate = new Date();
         var timeDifference = currentDate.getTime() - startDate.getTime();
-    
+
         var daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         var hoursDifference = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutesDifference = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         var secondsDifference = Math.floor((timeDifference % (1000 * 60)) / 1000);
-        
+
         countdownElement.textContent = daysDifference + " dias, " + hoursDifference + " horas, " + minutesDifference + " minutos e " + secondsDifference + " segundos juntos!";
     }
-    
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Carregar imagem do céu no dia que começaram a namorar usando a NASA API
-    var skyImageElement = document.getElementById("sky-image");
-    var nasaApiKey = "Y9iyTNJXcHTTL57E2MzSZEXQLICcOyyogjhs6pcr";
-
-    fetch("https://api.nasa.gov/planetary/earth/assets?lon=0&lat=0&date=2022-09-18&dim=0.1&api_key=" + nasaApiKey)
-        .then(response => response.json())
-        .then(data => {
-            skyImageElement.src = data.url;
-        })
-        .catch(error => {
-            console.error("Erro ao carregar a imagem do céu:", error);
-        });
-
-    // Carregar imagem Astronomy Picture of the Day usando a API APOD da NASA
-    var apodImageElement = document.getElementById("apod-image");
-    var apodTitleElement = document.getElementById("apod-title");
-    var apodExplanationElement = document.getElementById("apod-explanation");
-    
-    fetch("https://api.nasa.gov/planetary/apod?api_key=" + nasaApiKey)
-        .then(response => response.json())
-        .then(data => {
-            apodImageElement.src = data.hdurl; // Usa a URL de alta resolução, se disponível
-            apodImageElement.alt = data.title;
-            apodTitleElement.textContent = data.title;
-            apodExplanationElement.textContent = data.explanation;
-        })
-        .catch(error => {
-            console.error("Erro ao carregar a imagem do Astronomy Picture of the Day:", error);
-        });
-
     // Carregar fotos e motivos
     var photoGridElement = document.getElementById("photo-grid");
-    for (var i = 1; i <= 50; i++) {
+    var photoIndexes = Array.from({ length: 25 }, (_, i) => i + 1); // Cria um array de índices de 1 a 25
+    photoIndexes = shuffle(photoIndexes); // Embaralha os índices
+
+    var messages = [
+        "Porque você tem um coração gentil e amoroso.",
+        "Porque seu sorriso ilumina meu dia.",
+        "Porque você me faz rir mesmo nos momentos difíceis.",
+        "Porque você é minha melhor amiga e confidente.",
+        "Porque você me inspira a ser uma pessoa melhor.",
+        "Porque você sempre acredita em mim, mesmo quando eu duvido de mim mesmo.",
+        "Porque você é linda por dentro e por fora.",
+        "Porque você me apoia em todas as minhas decisões.",
+        "Porque você é a minha pessoa favorita para compartilhar aventuras.",
+        "Porque seu abraço é o meu lugar favorito na Terra.",
+        "Porque você me faz sentir amado todos os dias.",
+        "Porque você é incrivelmente talentosa e criativa.",
+        "Porque você é minha fonte de força e inspiração.",
+        "Porque sua presença torna qualquer dia ordinário extraordinário.",
+        "Porque você é a razão do meu sorriso todos os dias.",
+        "Porque você me ensina o verdadeiro significado do amor todos os dias.",
+        "Porque você é minha rocha em tempos de tempestade.",
+        "Porque você faz com que cada momento seja mágico.",
+        "Porque você é minha parceira de vida e aventuras.",
+        "Porque você me aceita exatamente como eu sou.",
+        "Porque seu amor é o maior presente que já recebi.",
+        "Porque você é minha luz nos dias mais sombrios.",
+        "Porque você me faz acreditar em contos de fadas e finais felizes.",
+        "Porque você é simplesmente você - e isso é tudo que eu sempre quis.",
+        "Porque eu não consigo imaginar minha vida sem você ao meu lado."
+    ];
+
+    for (var i = 0; i < photoIndexes.length; i++) {
         var photoDiv = document.createElement("div");
         photoDiv.classList.add("photo");
         var photoImg = document.createElement("img");
-        photoImg.src = "photos/photo" + i + ".jpg"; // Substitua pelo caminho das suas fotos
+        photoImg.src = "IMGs/IMG (" + photoIndexes[i] + ").jpeg"; // Caminho das imagens
         photoDiv.appendChild(photoImg);
-        photoGridElement.appendChild(photoDiv);
 
-        // Adicionar evento de clique para exibir mensagem fofa
-        photoDiv.addEventListener("click", function() {
-            alert("Mensagem fofa relacionada ao motivo pelo qual você a ama.");
-        });
+        var messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        messageDiv.textContent = (i + 1) + ". " + messages[i];
+        photoDiv.appendChild(messageDiv);
+
+        photoGridElement.appendChild(photoDiv);
     }
 });

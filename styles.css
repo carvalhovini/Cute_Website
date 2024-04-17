@@ -2,39 +2,130 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://apod.nasa.gov/apod/image/2209/CallanishAnalemma_Petricca_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px); /* Ajuste o valor conforme necessário */
+    z-index: -1; /* Coloca a div por trás do restante do conteúdo */
 }
 
 header {
-    background-color: #f7f7f7;
-    padding: 20px;
     text-align: center;
+    padding: 20px; /* Adiciona um espaçamento interno */
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+    position: relative; /* Permite posicionar elementos filhos */
+}
+
+header::before {
+    content: ""; /* Adiciona um elemento pseudo-elemento */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://example.com/capa-album.jpg'); /* URL da imagem de capa */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px; /* Garante que a borda da capa corresponda à do cabeçalho */
+    z-index: -1; /* Coloca a capa atrás do conteúdo do cabeçalho */
+    opacity: 0.5; /* Opacidade da capa */
+}
+
+header h1 {
+    font-size: 32px; /* Tamanho da fonte do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    color: #333; /* Cor do texto do título */
+    font-family: 'Roboto', sans-serif; /* Fonte elegante */
+    font-weight: bold; /* Negrito */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao texto */
 }
 
 main {
     padding: 20px;
 }
 
-.countdown, .sky-image, .photo-gallery {
-    margin-bottom: 30px;
-}
-
-.photo-gallery h2 {
-    margin-bottom: 10px;
-}
-
-#photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+.photo-gallery {
+    column-count: 3; /* Divide as fotos em três colunas */
+    column-gap: 20px; /* Define o espaçamento entre as colunas */
 }
 
 .photo {
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 20px; /* Adiciona um espaçamento entre as fotos */
+    overflow: hidden; /* Garante que a mensagem não ultrapasse os limites da foto */
 }
 
 .photo img {
-    width: 100%;
+    display: block;
+    max-width: 100%;
     height: auto;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+    transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.photo:hover {
+    transform: translateY(-5px); /* Eleva a foto um pouco ao passar o mouse */
+}
+
+.photo .message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    padding: 10px;
+    border-radius: 0 0 10px 10px; /* Adiciona bordas arredondadas apenas na parte inferior */
+    box-sizing: border-box; /* Inclui o preenchimento na largura total */
+    text-align: center;
+    font-size: 14px; /* Tamanho da fonte */
+    transform: translateY(100%); /* Move a mensagem para baixo */
+    opacity: 0; /* Inicialmente invisível */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Adiciona transições */
+}
+
+.photo:hover .message {
+    transform: translateY(0); /* Move a mensagem para cima */
+    opacity: 1; /* Torna a mensagem visível */
+}
+
+#apod-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#apod-explanation {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.countdown {
+    text-align: center;    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-bottom: 20px; /* Espaçamento abaixo do temporizador */
+    position: relative;
+}
+
+.countdown p {
+    font-size: 20px; /* Tamanho da fonte */
+    margin: 10px 0; /* Margem acima e abaixo do texto */
+    color: #000000; /* Cor do texto */
+    font-family: 'Roboto', sans-serif; /* Fonte elegante */
+    font-weight: bold; /* Negrito */
 }
