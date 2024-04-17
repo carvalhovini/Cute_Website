@@ -46,8 +46,8 @@ header::before {
 header h1 {
     font-size: 32px; /* Tamanho da fonte do título */
     margin-bottom: 10px; /* Espaçamento abaixo do título */
-    color: #333; /* Cor do texto do título */
-    font-family: 'Roboto', sans-serif; /* Fonte elegante */
+    color: #000; /* Cor preta para o texto do título */
+    font-family: 'Comic Sans MS', cursive; /* Fonte "fofa" */
     font-weight: bold; /* Negrito */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao texto */
 }
